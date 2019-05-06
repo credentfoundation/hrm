@@ -35,4 +35,8 @@
     <link href="{{asset('assets/plugins/wizard/steps.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/plugins/datatables/media/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('assets/plugins/html5-editor/bootstrap-wysihtml5.css')}}" />
+
+    
+    <link rel="stylesheet" type="text/css" href="{{ url('select2/css/select2.min.css')}}">
+    <script src="{{ url('select2/js/select2.min.js') }}"></script>
 </head>

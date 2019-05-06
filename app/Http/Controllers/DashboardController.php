@@ -40,22 +40,30 @@ class DashboardController extends Controller
 ////                $attArr[$month]=AttendanceSummary::where('employee_id',$employee->id)->whereRaw('MONTH(date) = ?',$month)->get();
 //            }
 ////            $finalcount[]=$count;
-//        }
+//        } 
 
         foreach ($months as $month) {
             foreach (Employee::all() as $employee) {
                 $weekend = Branch::where('id', $employee->branch_id)->first();
-                $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $month, Carbon::now()->year);
-                $days = 0;
-                for ($i = 1; $i <= $numberOfDays; $i++) {
-                    $now = Carbon::now();
-                    $date = Carbon::parse($i . "-" . $month . "-" . $now->year)->toDateString();
-                    if (in_array(Carbon::parse($date)->format('l'), json_decode($weekend->weekend)) == false) {
-                        $days += 1;
-                    }
+                //dd($employee);
+                if(!empty($weekend) || !is_null($weekend)){
+                    $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $month, Carbon::now()->year);
+                    $days = 0;
+                    //dd($weekend->weekend);
+                    if(!is_null($weekend->weekend)){
+                        for ($i = 1; $i <= $numberOfDays; $i++) {
+                            $now = Carbon::now();
+                            $date = Carbon::parse($i . "-" . $month . "-" . $now->year)->toDateString();
+                            if (in_array(Carbon::parse($date)->format('l'), json_decode($weekend->weekend)) == false) {
+                                $days += 1;
+                            }
 
+                        }
+                    }
+                    if($days >0){
+                        $counts[$month][$employee->id] = (AttendanceSummary::where('employee_id', $employee->id)->whereRaw('MONTH(date) = ?', $month)->whereRaw('YEAR(date) = ?', date('Y'))->count() / $days) * 100;
+                    }
                 }
-                $counts[$month][$employee->id] = (AttendanceSummary::where('employee_id', $employee->id)->whereRaw('MONTH(date) = ?', $month)->whereRaw('YEAR(date) = ?', date('Y'))->count() / $days) * 100;
             }
         }
 

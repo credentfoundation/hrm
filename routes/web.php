@@ -719,3 +719,6 @@ Route::any('/search',function(){
     else return view ('searchview')->withMessage('No Details found. Try to search again !');
 });
 // Route::get('welcome-mail','@welcomeMail');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

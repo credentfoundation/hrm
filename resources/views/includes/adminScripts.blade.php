@@ -56,3 +56,5 @@
             $(".touchspin").TouchSpin(), $(".switchBootstrap").bootstrapSwitch();
     }(window, document, jQuery);
 </script>
+
+

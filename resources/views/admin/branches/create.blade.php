@@ -60,7 +60,7 @@
 							<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Weekend Days</label>
-								<select multiple class="form-control custom-select" data-placeholder="Choose Skills" tabindex="1" name="weekend[]">
+								<select multiple="multiple" class="form-control custom-select weekend-select" data-placeholder="Choose Skills" tabindex="1" name="weekend[]">
 								@foreach($weekDays as $weekday)
 									<option value="{{$weekday}}">{{$weekday}}</option>
 									@endforeach
@@ -80,4 +80,12 @@
 		</div>
 	</div>
 </div>
+
+@push('scripts')
+	
+	<script>
+		$('.weekend-select').select2();
+	</script>	
+@endpush
+
 @stop

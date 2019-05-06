@@ -64,7 +64,7 @@
 						</div>	<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label">Select Weekend</label>
-								<select multiple class="form-control custom-select" data-placeholder="Choose Skills" tabindex="1" name="weekend[]">
+								<select multiple="multiple" class="form-control custom-select weekend-select" data-placeholder="Choose Skills" tabindex="1" name="weekend[]">
 									@foreach($weekDays as $weekDay)
 										<option value="{{$weekDay}}" @if($office_location->weekend!=null)@foreach(json_decode($office_location->weekend) as $key) @if($weekDay == $key) selected @endif
 												@endforeach @endif>{{$weekDay}}</option>
@@ -101,6 +101,10 @@ $(document).ready(function () {
 
     });
 });
+</script>
+
+<script>
+	$('.weekend-select').select2();
 </script>
 @endpush
 @stop

@@ -52,4 +52,5 @@
 @include('includes.adminScripts')
 </body>
 </html>
+@yield('add-js')
 

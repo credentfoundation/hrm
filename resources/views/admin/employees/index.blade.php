@@ -42,7 +42,7 @@
                         <td>{{$employee->firstname}} {{$employee->lastname}}</td>
                         <td>{{$employee->official_email}}</td>
                         <td>{{$employee->contact_no}}</td>
-                        <td>{{ ucfirst(trans($employee->designation))}}</td>
+                        <td>{{ ucfirst($employee->designation)}}</td>
                         {{--<td>{{isset($designations[$employee->designation]) ? $designations[$employee->designation] : ''}}</td>--}}
                         <td>{{isset($employee->branch) ? $employee->branch->name : ''}}</td>
                         <td>{{isset($employee->department) ? $employee->department->department_name : ''}}</td>
